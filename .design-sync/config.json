@@ -1,0 +1,12 @@
+{
+  "projectId": "b70c9781-ca16-4b09-9efe-f9d13c254adb",
+  "projectName": "F&S Design Language",
+  "shape": "design-language",
+  "offScript": true,
+  "pkg": "corporate-site",
+  "bundleDir": "ds-bundle",
+  "readmeHeader": ".design-sync/conventions.md",
+  "fontStrategy": "cdn-import",
+  "sourceStylesheet": "css/style.css",
+  "notes": "Off-script tokens + design-language sync. No component library exists in this repo (static HTML/CSS site), so there is no dist/ to bundle and no _ds_bundle.js. Rendered designs receive styles.css and its @import closure (Google Fonts + tokens/tokens.css + editorial base classes)."
+}
