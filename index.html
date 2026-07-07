@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>F&amp;S株式会社 | Fishing and Ships Inc.</title>
+  <meta name="description" content="F&S株式会社は、釣り船予約プラットフォーム「Opa」の開発・運営をはじめ、海と船にまつわる産業のデジタル化に取り組むテクノロジーカンパニーです。" />
+  <meta name="theme-color" content="#050f1b" />
+  <meta property="og:title" content="F&S株式会社 | Fishing and Ships Inc." />
+  <meta property="og:description" content="海の仕事を、ソフトウェアで前へ。釣り船予約プラットフォーム「Opa」を開発・運営するテクノロジーカンパニー。" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Shippori+Mincho+B1:wght@700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ===== 水深計(スクロールインジケーター) ===== -->
+  <aside class="depth-gauge" aria-hidden="true">
+    <span class="depth-gauge-label">DEPTH</span>
+    <span class="depth-gauge-value" id="depth-value">−000 m</span>
+    <span class="depth-gauge-track"><span class="depth-gauge-fill" id="depth-fill"></span></span>
+  </aside>
+
+  <!-- ===== マストヘッド ===== -->
+  <header class="masthead">
+    <div class="container masthead-inner">
+      <a class="brand" href="#top" aria-label="F&S株式会社 トップへ">
+        <span class="brand-wordmark">F<span class="brand-amp">&amp;</span>S<span class="brand-kk">株式会社</span></span>
+        <span class="brand-latin">FISHING AND SHIPS INC.</span>
+      </a>
+      <nav class="global-nav" aria-label="グローバルナビゲーション">
+        <a href="#news">お知らせ</a>
+        <a href="#business">事業内容</a>
+        <a href="#company">会社概要</a>
+        <a href="#recruit">採用</a>
+        <a href="#contact">お問い合わせ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ===== ヒーロー ===== -->
+    <section class="hero">
+      <div class="hero-fish" aria-hidden="true">
+        <span class="fish f1">&gt;&lt;&gt;</span>
+        <span class="fish f2">&gt;&lt;&gt;</span>
+        <span class="fish f3">&gt;&lt;&gt;</span>
+        <span class="fish f4">&lt;&gt;&lt;</span>
+        <span class="fish f5">&gt;&lt;&gt;</span>
+        <span class="fish f6">&lt;&gt;&lt;</span>
+      </div>
+      <div class="container hero-inner">
+        <p class="kicker">OUR MISSION<span class="kicker-jp">私たちの使命</span></p>
+        <h1 class="hero-title">海の仕事を、<br />ソフトウェアで前へ。</h1>
+        <p class="hero-copy">
+          F&amp;S株式会社は、釣り船予約プラットフォーム「Opa」の開発・運営をはじめ、
+          海と船にまつわる産業のデジタル化に取り組むテクノロジーカンパニーです。
+          帳場の台帳から予約の電話まで——海の現場に残る手仕事を、確かなソフトウェアで支えます。
+        </p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#business">事業内容を見る</a>
+          <a class="link-underline" href="#company">会社概要 →</a>
+        </div>
+        <dl class="hero-stats">
+          <div class="hero-stat">
+            <dt>サービス提供エリア</dt>
+            <dd><span class="stat-num">47</span><span class="stat-unit">都道府県</span></dd>
+          </div>
+          <div class="hero-stat">
+            <dt>オンライン予約受付</dt>
+            <dd><span class="stat-num">24/7</span><span class="stat-unit">年中無休</span></dd>
+          </div>
+          <div class="hero-stat">
+            <dt>事業領域</dt>
+            <dd><span class="stat-num">3</span><span class="stat-unit">事業</span></dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===== お知らせ ===== -->
+    <section class="section" id="news">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">NEWS</p>
+            <h2>お知らせ</h2>
+          </div>
+          <span class="section-heading-en">— LATEST UPDATES</span>
+        </div>
+        <ul class="news-list">
+          <li class="news-row">
+            <time class="news-date" datetime="2026-07-07">2026.07.07</time>
+            <span class="news-cat news-cat-info">PRESS</span>
+            <span class="news-title">コーポレートサイトを公開しました</span>
+          </li>
+          <li class="news-row">
+            <time class="news-date" datetime="2026-06-15">2026.06.15</time>
+            <span class="news-cat news-cat-info">PRODUCT</span>
+            <span class="news-title">釣り船予約プラットフォーム「Opa」機能アップデートのお知らせ</span>
+          </li>
+          <li class="news-row">
+            <time class="news-date" datetime="2026-04-01">2026.04.01</time>
+            <span class="news-cat news-cat-attn">RECRUIT</span>
+            <span class="news-title">エンジニア採用を開始しました</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== 事業内容 ===== -->
+    <section class="section" id="business">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">BUSINESS</p>
+            <h2>事業内容</h2>
+          </div>
+          <span class="section-heading-en">— WHAT WE DO</span>
+        </div>
+        <ol class="business-list">
+          <li class="business-row">
+            <span class="business-num">01</span>
+            <div class="business-body">
+              <h3>予約プラットフォーム事業</h3>
+              <p>
+                釣り船予約プラットフォーム「Opa」の開発・運営。
+                空席カレンダー・オンライン予約・顧客管理・料金管理までを一体で提供し、
+                船宿の帳場業務と釣り人の予約体験をまるごとなめらかにします。
+              </p>
+              <a class="link-underline" href="https://github.com/Fishing-and-Ships" target="_blank" rel="noopener">開発リポジトリ ↗</a>
+            </div>
+          </li>
+          <li class="business-row">
+            <span class="business-num">02</span>
+            <div class="business-body">
+              <h3>海事DX支援事業</h3>
+              <p>
+                遊漁船・渡船・屋形船など、船にまつわる事業者の業務デジタル化を支援。
+                予約・運航・決済のワークフローを現場に合わせて設計し、導入から運用まで伴走します。
+              </p>
+            </div>
+          </li>
+          <li class="business-row">
+            <span class="business-num">03</span>
+            <div class="business-body">
+              <h3>研究開発</h3>
+              <p>
+                海況・運航・釣果データの収集と活用に関する研究開発。
+                出船判断の支援や需要予測など、海の仕事の意思決定に効くデータ基盤づくりに取り組みます。
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== 会社概要 ===== -->
+    <section class="section" id="company">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">COMPANY</p>
+            <h2>会社概要</h2>
+          </div>
+          <span class="section-heading-en">— CORPORATE PROFILE</span>
+        </div>
+        <div class="company-grid">
+          <dl class="company-dl">
+            <!-- TODO: 正式な会社情報に差し替える -->
+            <div><dt>商号</dt><dd>F&amp;S株式会社(英文名: Fishing and Ships Inc.)</dd></div>
+            <div><dt>設立</dt><dd><span class="mono">2024</span> 年</dd></div>
+            <div><dt>所在地</dt><dd>東京都</dd></div>
+            <div><dt>事業内容</dt><dd>釣り船予約プラットフォームの開発・運営、海事DX支援、研究開発</dd></div>
+            <div><dt>連絡先</dt><dd><a class="link-underline" href="#contact">お問い合わせ →</a></dd></div>
+          </dl>
+          <div class="company-history">
+            <h3 class="company-history-title">沿革</h3>
+            <ul class="history-list">
+              <li><time class="mono" datetime="2024-06">2024.06</time><span>会社設立</span></li>
+              <li><time class="mono" datetime="2025-04">2025.04</time><span>釣り船予約プラットフォーム「Opa」開発開始</span></li>
+              <li><time class="mono" datetime="2026-07">2026.07</time><span>コーポレートサイト公開</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 採用 ===== -->
+    <section class="section" id="recruit">
+      <div class="container">
+        <div class="section-heading section-heading-attn">
+          <div>
+            <p class="kicker kicker-attn">RECRUIT</p>
+            <h2>採用情報</h2>
+          </div>
+          <span class="section-heading-en">— JOIN THE CREW</span>
+        </div>
+        <div class="recruit-body">
+          <p class="recruit-copy">
+            海が好きな人も、まだ海を知らない人も。<br />
+            現場の手ざわりから逆算してソフトウェアをつくる仲間を探しています。
+          </p>
+          <div class="recruit-roles">
+            <div class="recruit-role">
+              <span class="recruit-role-status recruit-open">募集中</span>
+              <span class="recruit-role-name">ソフトウェアエンジニア(Elixir / TypeScript)</span>
+            </div>
+            <div class="recruit-role">
+              <span class="recruit-role-status recruit-open">募集中</span>
+              <span class="recruit-role-name">プロダクトデザイナー</span>
+            </div>
+            <div class="recruit-role">
+              <span class="recruit-role-status recruit-closed">準備中</span>
+              <span class="recruit-role-name">カスタマーサクセス</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== お問い合わせ ===== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="kicker">CONTACT</p>
+            <h2>お問い合わせ</h2>
+          </div>
+          <span class="section-heading-en">— GET IN TOUCH</span>
+        </div>
+        <div class="contact-body">
+          <p>
+            事業・採用・取材に関するお問い合わせは、下記よりお気軽にご連絡ください。<br />
+            お問い合わせフォームは現在準備中です。
+          </p>
+          <div class="contact-actions">
+            <a class="btn-secondary" href="https://github.com/Fishing-and-Ships" target="_blank" rel="noopener">GitHub を見る ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== フッター ===== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-wordmark brand-wordmark-sm">F<span class="brand-amp">&amp;</span>S<span class="brand-kk">株式会社</span></span>
+        <p class="footer-mission">海の仕事を、ソフトウェアで前へ。</p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <a href="#news">お知らせ</a>
+        <a href="#business">事業内容</a>
+        <a href="#company">会社概要</a>
+        <a href="#recruit">採用</a>
+        <a href="https://github.com/Fishing-and-Ships" target="_blank" rel="noopener">GitHub ↗</a>
+      </nav>
+    </div>
+    <div class="container footer-bottom">
+      <span class="mono">© 2026 Fishing and Ships Inc.</span>
+      <span class="footer-coords mono" aria-hidden="true">35.6812° N, 139.7671° E</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

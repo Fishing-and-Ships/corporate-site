@@ -1,0 +1,812 @@
+/*
+ * F&S株式会社 コーポレートサイト
+ *
+ * デザインDNA: opa の「罫線・活字 / エディトリアル」を継承しつつ、
+ * 地色をオフホワイトから深海のダークネイビーへ反転させたダークテーマ。
+ *   - レイアウトの基本単位は罫線(border)。カード・影・ピルは使わない
+ *   - キッカー + 極太見出し、数字・日付は mono、記号は活字(→ ↗ › ><>)
+ *   - アクセントは clear-cyan(情報・アクティブ) / sand(注意・募集)
+ */
+
+:root {
+  /* === 海のダークブルー基調ブランドトークン === */
+  --ink-abyss: #050f1b;        /* ページ地(深海) */
+  --ink-deep: #081a2c;         /* 一段浅い海(セクション交互地) */
+  --ink-navy: #0d2740;         /* さらに浅い(ホバー地) */
+  --foam: #f2f5f1;             /* 文字(オフホワイト) */
+  --cyan: #3fc1d4;             /* clear-cyan 派生(ダーク地用に明度上げ) */
+  --sand: #d4ab60;             /* sand 派生(ダーク地用に明度上げ) */
+
+  /* 文字の不透明度の階段(DNA: 階層は不透明度でつくる) */
+  --foam-80: rgba(242, 245, 241, 0.8);
+  --foam-65: rgba(242, 245, 241, 0.65);
+  --foam-55: rgba(242, 245, 241, 0.55);
+  --foam-45: rgba(242, 245, 241, 0.45);
+  --foam-30: rgba(242, 245, 241, 0.3);
+
+  /* 罫線の階段 */
+  --rule-strong: var(--foam);
+  --rule: rgba(242, 245, 241, 0.16);
+  --rule-soft: rgba(242, 245, 241, 0.1);
+
+  --font-sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+  --font-display: "Shippori Mincho B1", "Hiragino Mincho ProN", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas,
+    "Zen Kaku Gothic New", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background-color: var(--ink-abyss);
+  /* 海面から差す光。DNAはグラデ背景禁止だが、ダーク反転版では
+     「深度」を出すためのごく淡い光条のみ許容する */
+  background-image: radial-gradient(
+    ellipse 130% 55% at 50% -12%,
+    rgba(63, 193, 212, 0.09) 0%,
+    transparent 68%
+  );
+  color: var(--foam);
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--cyan);
+  color: var(--ink-abyss);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding-inline: 20px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: 48px;
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ========== キッカー ========== */
+
+.kicker {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.kicker-attn {
+  color: var(--sand);
+}
+
+.kicker-jp {
+  border-left: 1px solid var(--rule);
+  color: var(--foam-45);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  margin-left: 0.9em;
+  padding-left: 0.9em;
+}
+
+/* ========== リンク・ボタン(DNA §4) ========== */
+
+.link-underline {
+  color: var(--foam);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 0.18s ease;
+}
+
+.link-underline:hover {
+  color: var(--cyan);
+}
+
+.btn-primary {
+  background: var(--foam);
+  border-radius: 4px;
+  color: var(--ink-abyss);
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 22px;
+  text-decoration: none;
+  transition: background-color 0.18s ease;
+}
+
+.btn-primary:hover {
+  background: var(--cyan);
+}
+
+.btn-secondary {
+  border: 1px solid var(--foam-30);
+  border-radius: 4px;
+  color: var(--foam);
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 18px;
+  text-decoration: none;
+  transition: background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(242, 245, 241, 0.06);
+  border-color: var(--foam-45);
+}
+
+/* ========== 水深計 ========== */
+
+.depth-gauge {
+  align-items: center;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+}
+
+@media (min-width: 1360px) {
+  .depth-gauge {
+    display: flex;
+  }
+}
+
+.depth-gauge-label {
+  color: var(--foam-45);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  writing-mode: vertical-rl;
+}
+
+.depth-gauge-value {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  writing-mode: vertical-rl;
+}
+
+.depth-gauge-track {
+  background: var(--rule);
+  display: block;
+  height: 180px;
+  position: relative;
+  width: 1px;
+}
+
+.depth-gauge-fill {
+  background: var(--cyan);
+  display: block;
+  height: 0%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 1px;
+}
+
+/* ========== マストヘッド ========== */
+
+.masthead {
+  backdrop-filter: blur(8px);
+  background: rgba(5, 15, 27, 0.86);
+  border-bottom: 1px solid var(--rule);
+  /* 新聞の題字下の二重罫 */
+  box-shadow: 0 3px 0 -2px var(--rule-soft);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.masthead::before {
+  /* 紙面上端の太罫 */
+  background: var(--foam);
+  content: "";
+  display: block;
+  height: 3px;
+}
+
+.masthead-inner {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+  padding-block: 14px;
+}
+
+.brand {
+  align-items: baseline;
+  display: inline-flex;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand-wordmark {
+  color: var(--foam);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.brand-wordmark-sm {
+  font-size: 20px;
+}
+
+.brand-amp {
+  color: var(--cyan);
+}
+
+.brand-kk {
+  font-size: 0.62em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-left: 0.35em;
+}
+
+.brand-latin {
+  border-left: 1px solid var(--foam-30);
+  color: var(--foam-55);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  line-height: 1.4;
+  padding-left: 12px;
+}
+
+.global-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 22px;
+}
+
+.global-nav a {
+  color: var(--foam-65);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.global-nav a:hover {
+  color: var(--cyan);
+}
+
+/* ========== ヒーロー ========== */
+
+.hero {
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-inner {
+  padding-block: 96px 72px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 6.4vw, 76px);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  line-height: 1.32;
+  margin-top: 26px;
+}
+
+.hero-copy {
+  color: var(--foam-65);
+  font-size: 14.5px;
+  line-height: 2.1;
+  margin-top: 28px;
+  max-width: 560px;
+}
+
+.hero-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 36px;
+}
+
+.hero-stats {
+  border-top: 2px solid var(--rule-strong);
+  display: grid;
+  gap: 0;
+  grid-template-columns: minmax(0, 1fr);
+  margin-top: 72px;
+  max-width: 720px;
+}
+
+.hero-stat {
+  align-items: baseline;
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding-block: 14px;
+}
+
+@media (min-width: 720px) {
+  .hero-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero-stat {
+    border-bottom: 0;
+    border-right: 1px solid var(--rule-soft);
+    display: block;
+    padding: 18px 20px 4px 0;
+  }
+
+  .hero-stat + .hero-stat {
+    padding-left: 20px;
+  }
+
+  .hero-stat:last-child {
+    border-right: 0;
+  }
+}
+
+.hero-stat dt {
+  color: var(--foam-45);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.hero-stat dd {
+  align-items: baseline;
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.stat-num {
+  color: var(--foam);
+  font-family: var(--font-mono);
+  font-size: clamp(26px, 3vw, 38px);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.stat-unit {
+  color: var(--foam-45);
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+/* ヒーローを泳ぐ活字の魚(記号は活字で、のDNA拡大解釈) */
+.hero-fish {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.fish {
+  color: var(--foam-30);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: -0.05em;
+  position: absolute;
+  white-space: nowrap;
+}
+
+/* > <> は右向き。左から右へ泳がせる */
+.f1 { animation: swim-right 34s linear infinite; top: 18%; }
+.f2 { animation: swim-right 46s linear infinite; animation-delay: -18s; color: rgba(63, 193, 212, 0.28); top: 30%; }
+.f3 { animation: swim-right 40s linear infinite; animation-delay: -30s; font-size: 11px; top: 64%; }
+.f5 { animation: swim-right 52s linear infinite; animation-delay: -8s; font-size: 16px; top: 78%; }
+/* <>< は左向き。右から左へ */
+.f4 { animation: swim-left 44s linear infinite; animation-delay: -12s; top: 46%; }
+.f6 { animation: swim-left 38s linear infinite; animation-delay: -26s; color: rgba(212, 171, 96, 0.25); font-size: 11px; top: 86%; }
+
+@keyframes swim-right {
+  from { transform: translateX(-8vw); }
+  to { transform: translateX(108vw); }
+}
+
+@keyframes swim-left {
+  from { transform: translateX(108vw); }
+  to { transform: translateX(-8vw); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fish {
+    animation: none;
+    left: 50%;
+  }
+  .f1 { left: 12%; }
+  .f2 { left: 68%; }
+  .f3 { left: 80%; }
+  .f4 { left: 42%; }
+  .f5 { left: 26%; }
+  .f6 { left: 58%; }
+}
+
+/* ========== セクション共通 ========== */
+
+.section {
+  padding-block: 88px;
+}
+
+.section:nth-of-type(odd) {
+  background: var(--ink-deep);
+}
+
+.section-heading {
+  align-items: flex-end;
+  border-bottom: 2px solid var(--rule-strong);
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding-bottom: 12px;
+}
+
+.section-heading-attn {
+  border-bottom-color: var(--sand);
+}
+
+.section-heading h2 {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: 8px;
+}
+
+.section-heading-en {
+  color: var(--foam-30);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  padding-bottom: 4px;
+  white-space: nowrap;
+}
+
+/* フェードイン(控えめ) */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ========== お知らせ ========== */
+
+.news-list {
+  list-style: none;
+}
+
+.news-row {
+  align-items: baseline;
+  border-bottom: 1px solid var(--rule-soft);
+  display: grid;
+  gap: 6px 24px;
+  grid-template-columns: auto;
+  padding-block: 18px;
+}
+
+@media (min-width: 720px) {
+  .news-row {
+    grid-template-columns: 110px 92px minmax(0, 1fr);
+  }
+}
+
+.news-date {
+  color: var(--foam-55);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ステータスは色ピルではなく活字で(DNA §2) */
+.news-cat {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.news-cat-info {
+  color: var(--cyan);
+}
+
+.news-cat-attn {
+  color: var(--sand);
+}
+
+.news-title {
+  color: var(--foam-80);
+  font-size: 14px;
+}
+
+/* ========== 事業内容 ========== */
+
+.business-list {
+  list-style: none;
+}
+
+.business-row {
+  border-bottom: 1px solid var(--rule-soft);
+  display: grid;
+  gap: 12px 40px;
+  grid-template-columns: auto;
+  padding-block: 36px;
+}
+
+.business-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+@media (min-width: 720px) {
+  .business-row {
+    grid-template-columns: 96px minmax(0, 1fr);
+  }
+}
+
+.business-num {
+  color: var(--foam-30);
+  font-family: var(--font-mono);
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.business-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.business-body p {
+  color: var(--foam-65);
+  font-size: 13.5px;
+  line-height: 2;
+  margin-top: 12px;
+  max-width: 640px;
+}
+
+.business-body .link-underline {
+  display: inline-block;
+  margin-top: 14px;
+}
+
+/* ========== 会社概要 ========== */
+
+.company-grid {
+  display: grid;
+  gap: 56px;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 900px) {
+  .company-grid {
+    gap: 72px;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+}
+
+/* 2カラム定義リスト + 行罫線(DNA §3) */
+.company-dl div {
+  border-bottom: 1px solid var(--rule-soft);
+  display: grid;
+  gap: 4px 24px;
+  grid-template-columns: auto;
+  padding-block: 16px;
+}
+
+.company-dl div:first-child {
+  border-top: 2px solid var(--rule);
+}
+
+@media (min-width: 600px) {
+  .company-dl div {
+    grid-template-columns: 140px minmax(0, 1fr);
+  }
+}
+
+.company-dl dt {
+  color: var(--foam-45);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.company-dl dd {
+  color: var(--foam-80);
+  font-size: 13.5px;
+}
+
+.company-history-title {
+  border-bottom: 1px solid var(--rule);
+  color: var(--foam-55);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding-bottom: 10px;
+}
+
+.history-list {
+  list-style: none;
+}
+
+.history-list li {
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex;
+  gap: 20px;
+  padding-block: 14px;
+}
+
+.history-list time {
+  color: var(--cyan);
+  flex-shrink: 0;
+  font-size: 12.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.history-list span {
+  color: var(--foam-80);
+  font-size: 13.5px;
+}
+
+/* ========== 採用 ========== */
+
+.recruit-copy {
+  color: var(--foam-80);
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.4vw, 24px);
+  font-weight: 700;
+  line-height: 2;
+}
+
+.recruit-roles {
+  border-top: 2px solid var(--rule);
+  margin-top: 36px;
+}
+
+.recruit-role {
+  align-items: baseline;
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex;
+  gap: 24px;
+  padding-block: 16px;
+}
+
+.recruit-role-status {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  width: 52px;
+}
+
+.recruit-open {
+  color: var(--sand);
+}
+
+.recruit-closed {
+  color: var(--foam-45);
+}
+
+.recruit-role-name {
+  color: var(--foam-80);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ========== お問い合わせ ========== */
+
+.contact-body p {
+  color: var(--foam-65);
+  font-size: 13.5px;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+/* ========== フッター ========== */
+
+.footer {
+  background: var(--ink-abyss);
+  border-top: 2px solid var(--rule-strong);
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 64px;
+  justify-content: space-between;
+  padding-block: 48px 40px;
+}
+
+.footer-mission {
+  color: var(--foam-45);
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.footer-nav a {
+  color: var(--foam-55);
+  font-size: 12.5px;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--cyan);
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--rule-soft);
+  color: var(--foam-30);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 11px;
+  gap: 8px 24px;
+  justify-content: space-between;
+  padding-block: 18px 26px;
+}
