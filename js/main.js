@@ -41,7 +41,7 @@
 
   // ===== セクションのフェードイン =====
   var targets = document.querySelectorAll(
-    ".section .section-heading, .news-row, .business-row, .company-dl, .company-history, .recruit-body, .contact-body"
+    ".section .section-heading, .news-row, .business-row, .company-dl, .company-history, .strength-lead, .contact-body"
   );
   targets.forEach(function (el) {
     el.classList.add("reveal");

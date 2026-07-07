@@ -232,14 +232,6 @@ body {
   z-index: 50;
 }
 
-.masthead::before {
-  /* 紙面上端の太罫 */
-  background: var(--foam);
-  content: "";
-  display: block;
-  height: 3px;
-}
-
 .masthead-inner {
   align-items: center;
   display: flex;
@@ -703,49 +695,22 @@ body {
   font-size: 13.5px;
 }
 
-/* ========== 採用 ========== */
+/* ========== 強み ========== */
 
-.recruit-copy {
+.strength-lead {
   color: var(--foam-80);
   font-family: var(--font-display);
-  font-size: clamp(18px, 2.4vw, 24px);
+  font-size: clamp(19px, 2.6vw, 26px);
   font-weight: 700;
   line-height: 2;
+  margin-bottom: 44px;
 }
 
-.recruit-roles {
-  border-top: 2px solid var(--rule);
-  margin-top: 36px;
-}
-
-.recruit-role {
-  align-items: baseline;
-  border-bottom: 1px solid var(--rule-soft);
-  display: flex;
-  gap: 24px;
-  padding-block: 16px;
-}
-
-.recruit-role-status {
-  flex-shrink: 0;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  width: 52px;
-}
-
-.recruit-open {
-  color: var(--sand);
-}
-
-.recruit-closed {
-  color: var(--foam-45);
-}
-
-.recruit-role-name {
-  color: var(--foam-80);
-  font-size: 14px;
-  font-weight: 500;
+.strength-x {
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding-inline: 0.1em;
 }
 
 /* ========== お問い合わせ ========== */
